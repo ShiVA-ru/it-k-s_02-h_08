@@ -34,3 +34,6 @@ WARNING
 
 - Прочитать про SameSite / CrossSite
 - HTTPOnly, Secure - для куки
+
+- Почитать про CORS
+- Почитать про fingerprint

@@ -5,11 +5,15 @@ import { ResultStatus } from "../../../core/types/result.code";
 import type { Result } from "../../../core/types/result.type";
 
 export const jwtService = {
-  async createToken(userId: string): Promise<Result<string | null>> {
+  async createToken(
+    userId: string,
+    tokenExpireTime: number,
+  ): Promise<Result<string | null>> {
     try {
       const token = jwt.sign({ id: userId }, config.jwtPrivateKey, {
-        expiresIn: +config.tokenExpireTime,
+        expiresIn: tokenExpireTime,
       });
+      console.log("tokenExpireTime", tokenExpireTime);
 
       return {
         status: ResultStatus.Success,
@@ -32,6 +36,8 @@ export const jwtService = {
       const verified = jwt.verify(token, config.jwtPrivateKey) as {
         id: string;
       };
+      console.log(jwt.decode(token));
+      console.log(verified);
       return {
         status: ResultStatus.Success,
         extensions: [],

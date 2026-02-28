@@ -4,6 +4,7 @@ import {
   blogsCollection,
   commentsCollection,
   postsCollection,
+  tokensCollection,
   usersCollection,
 } from "../db/mongo";
 
@@ -14,10 +15,12 @@ testingRouter.get("/", (_req: Request, res: Response) => {
 });
 
 testingRouter.delete("/all-data", async (_req: Request, res: Response) => {
+  console.log("deletealldata");
   await postsCollection.drop();
   await blogsCollection.drop();
   await usersCollection.drop();
   await commentsCollection.drop();
+  await tokensCollection.drop();
 
   res.sendStatus(HttpStatus.NoContent);
 });

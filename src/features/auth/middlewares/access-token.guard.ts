@@ -3,7 +3,7 @@ import { HttpStatus } from "../../../core/types/http-statuses.types";
 import { isSuccessResult } from "../../../core/utils/type-guards";
 import { jwtService } from "../application/jwt.service";
 
-export const accessTockenGuardMiddleware = async (
+export const accessTokenGuardMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -26,6 +26,7 @@ export const accessTockenGuardMiddleware = async (
     res.sendStatus(HttpStatus.Unauthorized);
     return;
   }
+  console.log(result);
 
   req.user = { id: result.data.id };
   next();

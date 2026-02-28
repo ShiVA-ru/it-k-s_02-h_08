@@ -1,3 +1,4 @@
+import cookieParser from "cookie-parser";
 import express, { type Express } from "express";
 import { RouterPath } from "./core/constants/router.constants";
 import { HttpStatus } from "./core/types/http-statuses.types";
@@ -10,9 +11,10 @@ import { testingRouter } from "./testing/testing.router";
 
 export const setupApp = (app: Express) => {
   app.use(express.json());
+  app.use(cookieParser());
 
   // основной роут
-  app.get("/", (req, res) => {
+  app.get("/", (_req, res) => {
     res.status(HttpStatus.Ok).send("Hello world!");
   });
 

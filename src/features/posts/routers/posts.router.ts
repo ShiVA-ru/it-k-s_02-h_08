@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { inputValidationResultMiddleware } from "../../../core/middlewares/validation/input-validation-result.middleware";
 import { idValidation } from "../../../core/middlewares/validation/params-id-validation.middleware";
-import { accessTockenGuardMiddleware } from "../../auth/middlewares/access-token.guard";
+import { accessTokenGuardMiddleware } from "../../auth/middlewares/access-token.guard";
 import { superAdminGuardMiddleware } from "../../auth/middlewares/super-admin.guard";
 import { commentInputDtoValidation } from "../../comments/validation/comments.input-dto.validation.middleware";
 import { postInputDtoValidation } from "../validation/posts.input-dto.validation.middleware";
@@ -63,7 +63,7 @@ postsRouter
   //TODO add validation for dto
   .post(
     "/:id/comments",
-    accessTockenGuardMiddleware,
+    accessTokenGuardMiddleware,
     idValidation,
     commentInputDtoValidation,
     inputValidationResultMiddleware,

@@ -41,4 +41,8 @@ export const usersService = {
   async deleteById(id: string): Promise<boolean> {
     return await usersRepository.deleteById(id);
   },
+
+  async findById(id: string): Promise<UserDb | null> {
+    return await usersRepository.findOneById(id);
+  },
 };
